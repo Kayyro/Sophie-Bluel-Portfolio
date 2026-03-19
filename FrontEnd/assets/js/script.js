@@ -1,4 +1,4 @@
-import {getCategories, getWorks} from "./api.js"
+import { getCategories, getWorks } from "./api.js"
 import { displayWorks, displayFilters } from "./gui.js";
 
 async function init() {

@@ -23,41 +23,34 @@ export function displayWorks(works) {
 }
 
 export function displayFilters(categories, works) {
-  //pos bouton
   const filtersContainer = document.querySelector(".filters");
 
-  //boutton "tous"
-  const btnAll = document.createElement("button");
-  btnAll.innerText = "Tous";
-  btnAll.classList.add("btn-filter", "active"); //ont voit "tout" par defaut
-  filtersContainer.appendChild(btnAll);
+  categories.unshift({ id: 0, name: "Tous" });
 
-  //"Tout" affiche le tableau "works" complet
-  activeBtn = btnAll;
-  btnAll.addEventListener("click", () => {
-    displayWorks(works);
-    activeBtn.classList.remove("active");
-    btnAll.classList.add("active");
-    activeBtn = btnAll;
-  });
-  //Boutton dynamique
   categories.forEach((category) => {
     const btn = document.createElement("button");
+
     btn.innerText = category.name;
     btn.classList.add("btn-filter");
-    filtersContainer.appendChild(btn);
+
+    if (category.id === 0) {
+      btn.classList.add("active");
+      activeBtn = btn;
+    }
 
     //filtrage
     btn.addEventListener("click", () => {
-      // .filter() crée un nouveau tableau avec uniquement les projets
-      // qui ont le même ID que la catégorie du bouton cliqué
       activeBtn.classList.remove("active");
       btn.classList.add("active");
       activeBtn = btn;
-      const filteredWorks = works.filter((work) => {
-        return work.categoryId === category.id;
-      });
+
+      const filteredWorks =
+        category.id === 0
+          ? works
+          : works.filter((work) => work.categoryId === category.id);
+
       displayWorks(filteredWorks);
     });
+    filtersContainer.appendChild(btn);
   });
 }
