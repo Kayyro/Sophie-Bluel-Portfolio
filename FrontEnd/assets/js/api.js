@@ -18,3 +18,5 @@ export async function getCategories(){
 
     return categories;
 }
+
+//Login
