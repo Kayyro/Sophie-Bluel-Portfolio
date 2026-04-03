@@ -11,5 +11,18 @@ async function init() {
 
 init();
 
-//unshift, push pour les categories
-//
+const token = localStorage.getItem("token");
+
+if (token) {
+    // badeau
+    const editBanner = document.querySelector("#edit-banner");
+    editBanner.style.display = "block";
+
+    // Login->Logout
+    const navLogin = document.querySelector("#nav-login");
+    navLogin.innerText = "logout";
+    navLogin.addEventListener("click", () => {
+        localStorage.removeItem("token"); // supp le token
+        window.location.href = "index.html"; // reload
+    });
+}
