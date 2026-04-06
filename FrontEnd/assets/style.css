@@ -307,3 +307,73 @@ footer nav ul {
     font-family: 'Work Sans';
     font-size: 1em;
 }
+#btn-modifier {
+	display: none;
+}
+/*MODALE*/
+#modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 100;
+    justify-content: center;
+    align-items: center;
+}
+
+#modal {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 40px;
+    width: 500px;
+    position: relative;
+}
+
+#modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+#modal-works {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+#modal-works img {
+    width: 100%;
+}
+
+#btn-add-photo {
+    font-family: 'Syne';
+    font-weight: 700;
+    color: white;
+    background-color: #1D6154;
+    border: none;
+    border-radius: 60px;
+    padding: 14px 32px;
+    cursor: pointer;
+    display: block;
+    margin: auto;
+}
+
+/* Zone formulaire cachée par défaut */
+#modal-form {
+    display: none;
+}
+
+#btn-back {
+    background: none;
+    border: none;
+    font-size: 1.2em;
+    cursor: pointer;
+}

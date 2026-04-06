@@ -55,6 +55,7 @@
       <section id="portfolio">
         <h2>Mes Projets</h2>
         <div class="filters"></div>
+        <button id="btn-modifier">Modifier</button>
         <div class="gallery">
           <figure>
             <img src="assets/images/abajour-tahina.png" alt="Abajour Tahina" />
@@ -154,6 +155,28 @@
         </ul>
       </nav>
     </footer>
+    <div id="modal-overlay">
+      <div id="modal">
+        <button id="modal-close">✕</button>
+
+        <div id="modal-gallery">
+          <h2>Galerie photo</h2>
+          <div id="modal-works"></div>
+          <button id="btn-add-photo">Ajouter une photo</button>
+        </div>
+
+        <div id="modal-form">
+          <button id="btn-back">←</button>
+          <h2>Ajout photo</h2>
+          <form>
+            <input type="file" id="photo" accept="image/*" />
+            <input type="text" id="title" placeholder="Titre" />
+            <select id="category"></select>
+            <button type="button" id="btn-submit">Valider</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="./assets/js/script.js"></script>
   </body>
-  <script type="module" src="./assets/js/script.js"></script>
 </html>
