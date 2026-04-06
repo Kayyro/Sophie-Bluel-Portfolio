@@ -1,6 +1,6 @@
 import { getCategories, getWorks } from "./api.js";
 import { displayWorks, displayFilters } from "./gui.js";
-let works = []; //je le declare en dehors
+let works = [];
 
 async function init() {
   works = await getWorks();
@@ -14,26 +14,27 @@ init();
 
 const token = localStorage.getItem("token");
 
-if (token) {
-  // badeau
+function setupEditMode() {
   const editBanner = document.querySelector("#edit-banner");
   editBanner.style.display = "block";
 
-  // Login->Logout
   const navLogin = document.querySelector("#nav-login");
   navLogin.innerText = "logout";
   navLogin.addEventListener("click", () => {
-    localStorage.removeItem("token"); // supp le token
-    window.location.href = "index.html"; // reload
+    localStorage.removeItem("token");
+    window.location.href = "index.html";
   });
-  //filtre
+
   const filters = document.querySelector(".filters");
   filters.style.display = "none";
 
   const btnModifier = document.querySelector("#btn-modifier");
   btnModifier.style.display = "block";
 
-  // MODALE
+  setupModal(btnModifier);
+}
+
+function setupModal(btnModifier) {
   const modalOverlay = document.querySelector("#modal-overlay");
   const modalClose = document.querySelector("#modal-close");
   const modalGallery = document.querySelector("#modal-gallery");
@@ -41,18 +42,20 @@ if (token) {
   const btnAddPhoto = document.querySelector("#btn-add-photo");
   const btnBack = document.querySelector("#btn-back");
 
+  function closeModal() {
+    modalOverlay.style.display = "none";
+    modalGallery.style.display = "block";
+    modalForm.style.display = "none";
+  }
+
   btnModifier.addEventListener("click", () => {
     modalOverlay.style.display = "flex";
   });
 
-  modalClose.addEventListener("click", () => {
-    modalOverlay.style.display = "none";
-  });
+  modalClose.addEventListener("click", closeModal);
 
   modalOverlay.addEventListener("click", (e) => {
-    if (e.target === modalOverlay) {
-      modalOverlay.style.display = "none";
-    }
+    if (e.target === modalOverlay) closeModal();
   });
 
   btnAddPhoto.addEventListener("click", () => {
@@ -64,4 +67,8 @@ if (token) {
     modalForm.style.display = "none";
     modalGallery.style.display = "block";
   });
+}
+
+if (token) {
+  setupEditMode();
 }
