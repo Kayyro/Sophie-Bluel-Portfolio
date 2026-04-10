@@ -77,7 +77,7 @@ export function displayModalWorks(works, token) {
     //tentative de faire un truc
     btnDelete.addEventListener("click", async () => {
       const response = await fetch(
-        "http://localhost:5678/api/works/${work.id}",
+        `http://localhost:5678/api/works/${work.id}`,
         {
           method: "DELETE",
           headers: {
