@@ -54,3 +54,48 @@ export function displayFilters(categories, works) {
     filtersContainer.appendChild(btn);
   });
 }
+
+//ajouter  fonction similaire a displayWorks//
+export function displayModalWorks(works, token) {
+  const modalWorks = document.querySelector("#modal-works");
+
+  //vide
+  modalWorks.innerHTML = "";
+
+  works.forEach((work) => {
+    const figure = document.createElement("figure");
+    const img = document.createElement("img");
+    const btnDelete = document.createElement("button");
+
+    img.src = work.imageUrl;
+    img.alt = work.title;
+
+    // icon poubelle
+    btnDelete.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
+    btnDelete.classList.add("btn-delete");
+
+    //tentative de faire un truc
+    btnDelete.addEventListener("click", async () => {
+      const response = await fetch(
+        "http://localhost:5678/api/works/${work.id}",
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+      if (response.ok) {
+        figure.remove(); // retire du DOM
+        const index = works.indexOf(work);
+        works.splice(index, 1); // retire du tableau
+        displayWorks(works); // met à jour la galerie
+      }
+    });
+
+    figure.appendChild(img);
+    figure.appendChild(btnDelete);
+
+    modalWorks.appendChild(figure);
+  });
+}

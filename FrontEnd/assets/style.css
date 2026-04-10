@@ -317,12 +317,12 @@ footer nav ul {
 }
 
 #btn-modifier {
+	display: none;
     background: none;
     border: none;
     font-family: Work sans;
     font-weight: 400;
     font-size: 14px;
-	display: flex;
     align-items: center;
     nav-right: auto;
     cursor: pointer;
@@ -348,6 +348,8 @@ footer nav ul {
     padding: 40px;
     width: 500px;
     position: relative;
+    overflow-y: auto;
+    max-height: 80vh;
 }
 
 #modal-close {
@@ -394,4 +396,25 @@ footer nav ul {
     border: none;
     font-size: 1.2em;
     cursor: pointer;
+}
+/*poubelle*/
+#modal-works figure {
+    position: relative;
+}
+
+.btn-delete {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 8px;
+    cursor: pointer;
+    font-size: 0.8em;
+}
+
+button-delete:hover{
+    background-color: #333;
 }

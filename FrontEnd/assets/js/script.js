@@ -1,5 +1,5 @@
 import { getCategories, getWorks } from "./api.js";
-import { displayWorks, displayFilters } from "./gui.js";
+import { displayWorks, displayFilters, displayModalWorks } from "./gui.js";
 let works = [];
 
 async function init() {
@@ -31,10 +31,10 @@ function setupEditMode() {
   const btnModifier = document.querySelector("#btn-modifier");
   btnModifier.style.display = "block";
 
-  setupModal(btnModifier);
+  setupModal(btnModifier, token);
 }
 
-function setupModal(btnModifier) {
+function setupModal(btnModifier, token) {
   const modalOverlay = document.querySelector("#modal-overlay");
   const modalClose = document.querySelector("#modal-close");
   const modalGallery = document.querySelector("#modal-gallery");
@@ -50,6 +50,7 @@ function setupModal(btnModifier) {
 
   btnModifier.addEventListener("click", () => {
     modalOverlay.style.display = "flex";
+    displayModalWorks(works, token); 
   });
 
   modalClose.addEventListener("click", closeModal);
