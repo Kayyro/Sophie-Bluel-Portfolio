@@ -32,3 +32,17 @@ export async function deleteWork(workId, token) {
         }
         return;
 }
+
+export async function addWork(fromData, token) {
+    const response = await fetch("http://localhost:5678/api/works",{
+        method: "POST",
+        headers: {
+            "Authorization": `Bearer ${token}`
+        },
+        body:fromData
+    });
+    if(!response.ok) {
+        throw new Error("Erreur lors de l'ajout du travail")
+    }
+    return await response.json();
+}

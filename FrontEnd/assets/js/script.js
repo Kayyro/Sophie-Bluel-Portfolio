@@ -1,4 +1,4 @@
-import { getCategories, getWorks } from "./api.js";
+import { getCategories, getWorks, addWork } from "./api.js";
 import {
   displayWorks,
   displayFilters,
@@ -50,6 +50,9 @@ function setupModal(btnModifier, token) {
   const inputPhoto = document.querySelector("#photo");
   const previewImg = document.querySelector("#preview-img");
   const labelPhoto = document.querySelector("#label-photo");
+  const btnSubmit = document.querySelector("#btn-submit");
+  const inputTitle = document.querySelector("#title");
+  const selectCategory = document.querySelector("#category");
 
   function closeModal() {
     modalOverlay.style.display = "none";
@@ -91,9 +94,30 @@ function setupModal(btnModifier, token) {
         previewImg.style.display = "block"; // on affiche l'img
         labelPhoto.style.display = "none"; // on cache le label
       };
-      reader.readAsDataURL(file);//lance la lecture
+      reader.readAsDataURL(file); //lance la lecture
     }
   });
+  btnSubmit.addEventListener("click", async () => {
+    const file = inputPhoto.files[0];
+    const title = inputTitle.value;
+    const category = selectCategory.value;
+
+    // Vérification que tout est rempli
+    if (!file || !title || !category) {
+        alert("Veuillez remplir tous les champs !");
+        return;
+    }
+
+    // Construction du FormData
+    const formData = new FormData();
+    formData.append("image", file);
+    formData.append("title", title);
+    formData.append("category", category);
+
+    // Appel API via api.js
+    const newWork = await addWork(formData, token);
+    console.log("nouveau travail créé :", newWork);
+});
 }
 
 if (token) {
