@@ -104,6 +104,16 @@
           <button id="btn-back">←</button>
           <h2>Ajout photo</h2>
           <form>
+            <!-- Zone de prévisualisation -->
+             <div id ="preview-container">
+              <label for="photo" id="label-photo">
+                <i class="fa-regular fa-image"></i>
+                <p>+ Ajouter Photo</p>
+                <p>jpg, png : 4mo max</p>
+              </label>
+              <img id="preview-img" src="" alt="prévisualisation" style="display:none;">
+              <input type="file" id="photo" accept="image/*" style="display:none;">
+             </div>
             <input type="file" id="photo" accept="image/*" />
             <input type="text" id="title" placeholder="Titre" />
             <select id="category"></select>

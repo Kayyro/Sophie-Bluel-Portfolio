@@ -1,5 +1,10 @@
 import { getCategories, getWorks } from "./api.js";
-import { displayWorks, displayFilters, displayModalWorks, displayCategories } from "./gui.js";
+import {
+  displayWorks,
+  displayFilters,
+  displayModalWorks,
+  displayCategories,
+} from "./gui.js";
 let works = [];
 let categories = [];
 
@@ -42,6 +47,9 @@ function setupModal(btnModifier, token) {
   const modalForm = document.querySelector("#modal-form");
   const btnAddPhoto = document.querySelector("#btn-add-photo");
   const btnBack = document.querySelector("#btn-back");
+  const inputPhoto = document.querySelector("#photo");
+  const previewImg = document.querySelector("#preview-img");
+  const labelPhoto = document.querySelector("#label-photo");
 
   function closeModal() {
     modalOverlay.style.display = "none";
@@ -51,7 +59,7 @@ function setupModal(btnModifier, token) {
 
   btnModifier.addEventListener("click", () => {
     modalOverlay.style.display = "flex";
-    displayModalWorks(works, token); 
+    displayModalWorks(works, token);
   });
 
   modalClose.addEventListener("click", closeModal);
@@ -69,6 +77,22 @@ function setupModal(btnModifier, token) {
   btnBack.addEventListener("click", () => {
     modalForm.style.display = "none";
     modalGallery.style.display = "block";
+  });
+
+  inputPhoto.addEventListener("change", () => {
+    const file = inputPhoto.files[0]; //recupere le fichier
+
+    if (file) {
+      const reader = new FileReader();
+
+      //qaund le fichier est lu
+      reader.onload = (e) => {
+        previewImg.src = e.target.result; // on met l'URL dans l'img
+        previewImg.style.display = "block"; // on affiche l'img
+        labelPhoto.style.display = "none"; // on cache le label
+      };
+      reader.readAsDataURL(file);//lance la lecture
+    }
   });
 }
 
