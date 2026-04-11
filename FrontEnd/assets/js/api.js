@@ -19,4 +19,16 @@ export async function getCategories(){
     return categories;
 }
 
-//Login
+export async function deleteWork(workId, token) {
+    const response = await fetch(`http://localhost:5678/api/works/${workId}`,
+    {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        if(!response.ok) {
+            throw Error("error")
+        }
+        return;
+}

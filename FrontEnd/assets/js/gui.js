@@ -1,3 +1,5 @@
+import { deleteWork } from "./api.js";
+
 let activeBtn;
 
 export function displayWorks(works) {
@@ -76,21 +78,12 @@ export function displayModalWorks(works, token) {
 
     //tentative de faire un truc
     btnDelete.addEventListener("click", async () => {
-      const response = await fetch(
-        `http://localhost:5678/api/works/${work.id}`,
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        },
-      );
-      if (response.ok) {
-        figure.remove(); // retire du DOM
-        const index = works.indexOf(work);
-        works.splice(index, 1); // retire du tableau
-        displayWorks(works); // met à jour la galerie
-      }
+
+      await deleteWork(work.id, token);
+      figure.remove(); // retire du DOM
+      const index = works.indexOf(work);
+      works.splice(index, 1); // retire du tableau
+      displayWorks(works); // met à jour la galerie
     });
 
     figure.appendChild(img);
@@ -98,4 +91,19 @@ export function displayModalWorks(works, token) {
 
     modalWorks.appendChild(figure);
   });
+}
+
+export function displayCategories(categories) {
+  const select = document.querySelector("#category");
+
+  select.innerHTML = "";
+
+  categories.forEach(category =>{
+    if (category.id === 0) return;
+
+    const option = document.createElement("option");
+    option.value = category.id;
+    option.innerText = category.name;
+    select.appendChild(option);
+  })
 }

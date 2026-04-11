@@ -1,10 +1,11 @@
 import { getCategories, getWorks } from "./api.js";
-import { displayWorks, displayFilters, displayModalWorks } from "./gui.js";
+import { displayWorks, displayFilters, displayModalWorks, displayCategories } from "./gui.js";
 let works = [];
+let categories = [];
 
 async function init() {
   works = await getWorks();
-  const categories = await getCategories();
+  categories = await getCategories();
 
   displayWorks(works);
   displayFilters(categories, works);
@@ -62,6 +63,7 @@ function setupModal(btnModifier, token) {
   btnAddPhoto.addEventListener("click", () => {
     modalGallery.style.display = "none";
     modalForm.style.display = "block";
+    displayCategories(categories);
   });
 
   btnBack.addEventListener("click", () => {
