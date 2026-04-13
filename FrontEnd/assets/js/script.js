@@ -104,8 +104,8 @@ function setupModal(btnModifier, token) {
 
     // Vérification que tout est rempli
     if (!file || !title || !category) {
-        alert("Veuillez remplir tous les champs !");
-        return;
+      alert("Veuillez remplir tous les champs !");
+      return;
     }
 
     // Construction du FormData
@@ -117,7 +117,15 @@ function setupModal(btnModifier, token) {
     // Appel API via api.js
     const newWork = await addWork(formData, token);
     console.log("nouveau travail créé :", newWork);
-});
+    //ajout le nouveau taff au tableau
+    works.push(newWork);
+    //refresh la galerie principal
+    displayModalWorks(works, token);
+
+    //retourne sur la galerie de la modale
+    modalForm.style.display = "none";
+    modalGallery.style.display = "block";
+  });
 }
 
 if (token) {

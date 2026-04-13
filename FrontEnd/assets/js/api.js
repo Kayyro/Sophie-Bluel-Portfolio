@@ -33,13 +33,13 @@ export async function deleteWork(workId, token) {
         return;
 }
 
-export async function addWork(fromData, token) {
+export async function addWork(formData, token) {
     const response = await fetch("http://localhost:5678/api/works",{
         method: "POST",
         headers: {
             "Authorization": `Bearer ${token}`
         },
-        body:fromData
+        body:formData
     });
     if(!response.ok) {
         throw new Error("Erreur lors de l'ajout du travail")
