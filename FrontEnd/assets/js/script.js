@@ -120,7 +120,8 @@ function setupModal(btnModifier, token) {
     //ajout le nouveau taff au tableau
     works.push(newWork);
     //refresh la galerie principal
-    displayModalWorks(works, token);
+    displayWorks(works);// refressh de la galeries de works
+    displayModalWorks(works, token); //refresh de la modale uniquement
 
     //retourne sur la galerie de la modale
     modalForm.style.display = "none";
