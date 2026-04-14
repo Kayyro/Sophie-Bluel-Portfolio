@@ -58,6 +58,13 @@ function setupModal(btnModifier, token) {
     modalOverlay.style.display = "none";
     modalGallery.style.display = "block";
     modalForm.style.display = "none";
+
+    //ajout d'un reset a la fermeture de la modale
+    inputPhoto.value = "";
+    inputTitle.value = "";
+    previewImg.style.display = "none";
+    previewImg.src = "";
+    labelPhoto.style.display = "flex";
   }
 
   btnModifier.addEventListener("click", () => {
@@ -120,8 +127,15 @@ function setupModal(btnModifier, token) {
     //ajout le nouveau taff au tableau
     works.push(newWork);
     //refresh la galerie principal
-    displayWorks(works);// refressh de la galeries de works
+    displayWorks(works); // refressh de la galeries de works
     displayModalWorks(works, token); //refresh de la modale uniquement
+
+    inputPhoto.value = "";
+    inputTitle.value = "";
+    selectCategory.value = "";
+    previewImg.style.display = "none"; // cache la prévisualisation
+    previewImg.src = ""; // vide l'image
+    labelPhoto.style.display = "flex"; // réaffiche le label
 
     //retourne sur la galerie de la modale
     modalForm.style.display = "none";

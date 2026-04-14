@@ -79,6 +79,8 @@ export function displayModalWorks(works, token) {
     //tentative de faire un truc
     btnDelete.addEventListener("click", async () => {
 
+      const confirmed = confirm("Voulez-vous vraiment supprimer cette photo ?");
+      if(!confirmed) return;
       await deleteWork(work.id, token);
       figure.remove(); // retire du DOM
       const index = works.indexOf(work);
