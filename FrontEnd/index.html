@@ -97,12 +97,15 @@
         <div id="modal-gallery">
           <h2>Galerie photo</h2>
           <div id="modal-works"></div>
+          <hr>
           <button id="btn-add-photo">Ajouter une photo</button>
         </div>
 
         <div id="modal-form">
+          <div id="modal-form-header">
           <button id="btn-back">←</button>
           <h2>Ajout photo</h2>
+          </div>
           <form>
             <!-- Zone de prévisualisation -->
              <div id ="preview-container">
@@ -114,8 +117,12 @@
               <img id="preview-img" src="" alt="prévisualisation" style="display:none;">
               <input type="file" id="photo" accept="image/*" style="display:none;">
              </div>
-            <input type="text" id="title" placeholder="Titre" />
-            <select id="category"></select>
+            <label for="title">Titre</label>
+              <input type="text" id="title" placeholder="Titre">
+            <label for="category">Catégorie</label>
+              <select id="category"></select>
+              <option value="" disabled selected></option>
+            </select> 
             <hr>
             <button type="button" id="btn-submit">Valider</button>
           </form>
